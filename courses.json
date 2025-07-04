@@ -1,0 +1,92 @@
+{
+  "cse": {
+    "1": [
+      { "title": "C", "credit": 3 },
+      { "title": "C Lab", "credit": 3 },
+      { "title": "Electric Circuit", "credit": 3 },
+      { "title": "Electric Circuit Lab", "credit": 1.5 },
+      { "title": "Discrete Math", "credit": 3 },
+      { "title": "Linear Algebra", "credit": 3 },
+      { "title": "English Language", "credit": 2 },
+      { "title": "English Language Lab", "credit": 1 },
+      { "title": "Emergence of Bangladesh", "credit": 3 }
+    ],
+
+    "2": [
+      { "title": "Data Structure", "credit": 3},
+      { "title": "Data Structure Lab", "credit": 2},
+      { "title": "Engineering Ethics", "credit": 2},
+      { "title": "Electronic Device", "credit": 3},
+      { "title": "Electronic Device Lab", "credit": 1.5},
+      { "title": "Engineering Graphics", "credit": 1.5},
+      { "title": "Workshop", "credit": 1},
+      { "title": "Physics", "credit": 3},
+      { "title": "Calculus", "credit": 3},
+      { "title": "Project", "credit": 1.5}
+    ],
+
+    "3": [
+      { "title": "java", "credit": 3},
+      { "title": "Java Lab", "credit": 2},
+      { "title": "Algorithm", "credit": 3},
+      { "title": "Algorithm Lab", "credit": 2},
+      { "title": "BUS", "credit": 3},
+      { "title": "Physics Lab", "credit": 1.5},
+      { "title": "Statistics", "credit": 3},
+      { "title": "Economics", "credit": 3}
+    ],
+    "4": [
+      { "title": "Numerical", "credit": 2},
+      { "title": "Numerical Lab", "credit": 1.5},
+      { "title": "Data Science Lab", "credit":1.5 },
+      { "title": "Web Technology", "credit": 2},
+      { "title": "Theory of Computation", "credit": 3},
+      { "title": "Compettive Programming", "credit": 1.5},
+      { "title": "Digital Logic", "credit": 3},
+      { "title": "Digital Logic Lab", "credit": 1.5},
+      { "title": "Laplace transformation", "credit":3 },
+      { "title": "Project 2", "credit": 1.5}
+    ],
+    "5": [
+      { "title": "Database", "credit":3 },
+      { "title": "Database Lab", "credit":2 },
+      { "title": "OS", "credit": 3},
+      { "title": "OS Lab", "credit": 1.5},
+      { "title": "AI", "credit":3 },
+      { "title": "AI Lab", "credit": 1.5},
+      { "title": "SWE", "credit":3 },
+      { "title": "SWE Lab", "credit": 1.5},
+      { "title": "Microprocessor", "credit": 3},
+      { "title": "Microprocessor Lab", "credit": 1.5}
+    ],
+    "6": [
+      { "title": "Digital Signal", "credit": 3},
+      { "title": "Digital Signal Lab", "credit": 1.5},
+      { "title": "Computer Architecture", "credit": 3},
+      { "title": "ML", "credit": 3},
+      { "title": "ML Lab", "credit": 1.5},
+      { "title": "Communication Engineering", "credit":2 },
+      { "title": "Communication Engineering Lab", "credit": 1},
+      { "title": "Technical Writing", "credit": 2},
+      { "title": "Project 3", "credit": 3}
+    ],
+    "7":[
+      { "title": "Project Management", "credit":2 },
+      { "title": "Networking", "credit": 3},
+      { "title": "Netwroking lab", "credit": 1.5},
+      { "title": "Security", "credit": 3},
+      { "title": "Security Lab", "credit":1.5 },
+      { "title": "Option 1", "credit":3 },
+      { "title": "Option 1 Lab", "credit":1.5 },
+      { "title": "Thesis/Project", "credit": 2}
+    ],
+    "8": [
+      { "title": "Graphics", "credit": 3},
+      { "title": "Graphics Lab", "credit": 1.5},
+      { "title": "Option 2", "credit": 3},
+      { "title": "Option 2 Lab", "credit": 1.5},
+      { "title": "Thesis Project", "credit": 4 },
+      { "title": "Viva", "credit": 1}
+    ]
+  }
+}
