@@ -1,12 +1,8 @@
-/******************************************************************
- *  SUST CGPA calculator – ignores any course with grade‑point 0   *
- ******************************************************************/
+
 
 let courseData = {};
 
-// ────────────────────────────────────────────────────────────────
-// 1.  Load courses.json once the page finishes loading
-// ────────────────────────────────────────────────────────────────
+
 window.onload = () => {
   fetch("courses.json")
     .then(res => res.json())
@@ -14,9 +10,7 @@ window.onload = () => {
     .catch(err => console.error("Failed to load course data:", err));
 };
 
-// ────────────────────────────────────────────────────────────────
-// 2.  Load course list for chosen department / semester
-// ────────────────────────────────────────────────────────────────
+
 function loadCourses() {
   const dept = document.getElementById("department").value;
   const semester = document.getElementById("semester").value;
@@ -57,10 +51,10 @@ function loadCourses() {
     );
   });
 }
+const sem = document.getElementById("semester");
+sem.addEventListener("change", loadCourses);
 
-// ────────────────────────────────────────────────────────────────
-// 3.  Calculate CGPA  ─ F (grade‑point 0) is treated as a retake
-// ────────────────────────────────────────────────────────────────
+
 function calculateCGPA() {
   const selects = document.querySelectorAll(".grade");
   let totalCredits = 0;
