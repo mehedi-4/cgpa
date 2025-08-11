@@ -1,82 +1,88 @@
+/******************************************************************
+ *  SUST CGPA calculator – ignores any course with grade‑point 0   *
+ ******************************************************************/
+
 let courseData = {};
 
-// Load the courses.json when the page loads
-window.onload = function () {
+// ────────────────────────────────────────────────────────────────
+// 1.  Load courses.json once the page finishes loading
+// ────────────────────────────────────────────────────────────────
+window.onload = () => {
   fetch("courses.json")
     .then(res => res.json())
-    .then(data => {
-      courseData = data;
-    })
-    .catch(err => {
-      console.error("Failed to load course data:", err);
-    });
+    .then(data => { courseData = data; })
+    .catch(err => console.error("Failed to load course data:", err));
 };
 
-// Called when "Load Courses" is clicked
+// ────────────────────────────────────────────────────────────────
+// 2.  Load course list for chosen department / semester
+// ────────────────────────────────────────────────────────────────
 function loadCourses() {
   const dept = document.getElementById("department").value;
-  const sem = document.getElementById("semester").value;
+  const semester = document.getElementById("semester").value;
   const container = document.getElementById("courseContainer");
   container.innerHTML = "";
 
-  if (!dept || !sem) {
+  if (!dept || !semester) {
     container.innerHTML = "<p>Please select both department and semester.</p>";
     return;
   }
 
-  const courses = courseData[dept]?.[sem];
-
-  if (!courses || courses.length === 0) {
+  const courses = courseData[dept]?.[semester];
+  if (!courses?.length) {
     container.innerHTML = "<p>No course data found for this selection.</p>";
     return;
   }
 
-  // Display each course with credit and grade dropdown
   courses.forEach(course => {
-    const row = document.createElement("div");
-    row.className = "course-row";
-    row.innerHTML = `
-      <span>${course.title} (${course.credit} Credit)</span>
-      <select class="grade" data-credit="${course.credit}">
-        <option value="">Select Grade</option>
-        <option value="4.0">A+</option>
-        <option value="3.75">A</option>
-        <option value="3.5">A-</option>
-        <option value="3.25">B+</option>
-        <option value="3.0">B</option>
-        <option value="2.75">B-</option>
-        <option value="2.5">C+</option>
-        <option value="2.25">C</option>
-        <option value="2.0">D</option>
-        <option value="0.0">F</option>
-      </select>
-    `;
-    container.appendChild(row);
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="course-row">
+          <span>${course.title} (${course.credit} Credit)</span>
+          <select class="grade" data-credit="${course.credit}">
+            <option value="">Select Grade</option>
+            <option value="4.0">A+</option>
+            <option value="3.75">A</option>
+            <option value="3.5">A‑</option>
+            <option value="3.25">B+</option>
+            <option value="3.0">B</option>
+            <option value="2.75">B‑</option>
+            <option value="2.5">C+</option>
+            <option value="2.25">C</option>
+            <option value="2.0">D</option>
+          </select>
+        </div>
+      `
+    );
   });
 }
 
-// Calculate CGPA (skips unselected courses)
+// ────────────────────────────────────────────────────────────────
+// 3.  Calculate CGPA  ─ F (grade‑point 0) is treated as a retake
+// ────────────────────────────────────────────────────────────────
 function calculateCGPA() {
-  const grades = document.querySelectorAll(".grade");
-  let totalCredits = 0, totalPoints = 0;
+  const selects = document.querySelectorAll(".grade");
+  let totalCredits = 0;
+  let totalPoints = 0;
 
-  grades.forEach(select => {
-    const credit = parseFloat(select.dataset.credit);
-    const grade = parseFloat(select.value);
+  selects.forEach(sel => {
+    const gpStr = sel.value.trim();           // "" ▸ not selected
+    if (!gpStr) return;                        // skip unselected
 
-    if (!isNaN(grade)) {
-      totalCredits += credit;
-      totalPoints += credit * grade;
-    }
+    const gpNum = parseFloat(gpStr);
+    if (isNaN(gpNum) || gpNum === 0) return;   // skip F / invalid
+
+    const credit = parseFloat(sel.dataset.credit);
+    totalCredits += credit;
+    totalPoints += credit * gpNum;
   });
 
   const result = document.getElementById("result");
-
-  if (totalCredits === 0) {
-    result.textContent = "Please select at least one grade.";
+  if (!totalCredits) {
+    result.textContent = "Please select at least one passing grade.";
     return;
   }
 
-  const cgpa = (totalPoints / totalCredits).toFixed(2);
-  result.textContent = `Your CGPA: ${cgpa}`;
+  result.textContent = `Your CGPA: ${(totalPoints / totalCredits).toFixed(2)}`;
 }
